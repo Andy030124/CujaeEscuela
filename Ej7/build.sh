@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc ejercicio7.c -o ejercicio7
+g++ *.cpp -o ejercicio7

@@ -10,21 +10,28 @@ realizadas en la semana calcular lo que debe ganar
 en la semana y si esta por encima de un valor dado,
 almacenar true en una variable.
 */
-
-#include <stdio.h> // para printf y scanf
-#include <stdbool.h> // para bool
+#include <iostream>
+#include <sstream>
 
 #ifdef __linux__
-    static char __pause_str__[2]; // in linux is necesary 2 scan chars
-    #define PAUSE scanf("%c%c",&__pause_str__[0],&__pause_str__[1])
+    namespace unistd{
+        #include <unistd.h>
+    }
+    #define PAUSE unistd::pause()
 #elif defined(__MINGW32__) || defined(_WIN32)
-    #include <stdlib.h> // para system (solo en windows)
-    #define PAUSE system("pause > null")
+    #include <cstdlib> // para system (solo en windows)
+    #define PAUSE std::system("pause > null")
 #endif
 
 void pause(){
-    printf("\nPulse una tecla para salir...");
+    std::cout << "\nPulse una tecla para salir...";
     PAUSE;
+}
+
+template<typename T>
+void input(std::string str, T& var){
+    std::cout << str;
+    std::cin >> var;
 }
 
 int main() {
@@ -37,13 +44,16 @@ int main() {
         valorDado=0; // el valor final para decidir true o false
 
     // Ingresar los datos de ventas y salario fijo
-    printf("Ingrese el salario fijo del vendedor: ");
-    scanf("%f", &salarioFijo);
+    input("Ingrese el salario fijo del vendedor: ", salarioFijo);
 
-    printf("Ingrese el valor de cada una de las 5 ventas realizadas en la semana:\n");
+    std::cout 
+    << "Ingrese el valor de cada una de las 5 ventas realizadas en la semana: " 
+    << std::endl;
+
     for (int i = 0; i < 5; i++) {
-        printf("Venta dia %d: ", i + 1);
-        scanf("%f", &ventaDiaria);
+        std::stringstream str{};
+        str << "Venta dia " << i << ": ";
+        input(str.str().c_str(), ventaDiaria);
         totalVentas += ventaDiaria; // calcular el total de ventas
     }
     // Calcular el promedio del total de ventas
@@ -54,12 +64,13 @@ int main() {
     salarioTotal = salarioFijo + comision;
 
     // Verificar si está por encima del valor dado
-    printf("Ingrese el valor dado para comparar: ");
-    scanf("%f", &valorDado);
+    input("Ingrese el valor dado para comparar: ", valorDado);
 
     // Mostrar el salario total y si está por encima del valor dado
-    printf("El vendedor debe ganar %.2f en la semana.\n", salarioTotal);
-    printf("¿Está por encima del valor dado? %s\n", (salarioTotal > valorDado) ? "true" : "false");
+    std::cout 
+    << "El vendedor debe ganar " << salarioTotal << " en la semana.\n"
+    << "¿Está por encima del valor dado?" << std::boolalpha << (salarioTotal > valorDado) 
+    << std::endl;
 
     pause(); // pausear la consola
     return 0;
