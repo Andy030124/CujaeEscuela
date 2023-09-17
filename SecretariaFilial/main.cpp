@@ -28,7 +28,7 @@ int main(){
     std::string mensaje{"Nota del estudiante #"};
     for(cant_t i=0; i < totalEstudiantes; i++){
         cant_t nota{0};
-        input(mensaje + std::to_string(i), nota);
+        input(mensaje + std::to_string(i+1), nota);
         nota = std::clamp(nota, MIN_NOTA, MAX_NOTA);
 
         std::string nota_key{ std::to_string(nota) };
