@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.make": "makefile",
+        "*.env": "properties",
+        "*.hpp": "cpp",
+        "math.h": "c"
+    }
+}
