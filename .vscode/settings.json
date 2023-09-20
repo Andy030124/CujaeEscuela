@@ -3,6 +3,7 @@
         "*.make": "makefile",
         "*.env": "properties",
         "*.hpp": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iostream": "cpp"
     }
 }
