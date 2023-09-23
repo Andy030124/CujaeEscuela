@@ -12,20 +12,19 @@ almacenar true en una variable.
 */
 #include <iostream>
 #include <sstream>
+#include <cstdlib> // para system
 
-#ifdef __linux__
-    namespace unistd{
-        #include <unistd.h>
-    }
-    #define PAUSE unistd::pause()
+// para que funcione el system pause en Linux y windows
+#if defined(__linux__) && !defined(__MINGW32__)
+    #define PAUSE "foo=0; read foo"
 #elif defined(__MINGW32__) || defined(_WIN32)
-    #include <cstdlib> // para system (solo en windows)
-    #define PAUSE std::system("pause > null")
+    #define PAUSE "pause > null"
 #endif
 
 void pause(){
     std::cout << "\nPulse una tecla para salir...";
-    PAUSE;
+    std::system(PAUSE);
+    std::cout << "\n";
 }
 
 template<typename T>
@@ -35,12 +34,12 @@ void input(std::string str, T& var){
 }
 
 int main() {
-    float ventaDiaria=0, // array con ventas por cada semana
-        salarioFijo=0,
-        comision=0,
-        totalVentas=0,
-        promedioVentas=0,
-        salarioTotal=0,
+    float ventaDiaria=0, // almacenar mis ventas diarias por semana
+        salarioFijo=0,  // mi salario semanal
+        comision=0,     // la comision semanal que se le suma a mi salario
+        totalVentas=0,  // mi total de ventas semanal
+        promedioVentas=0,   // el promedio de ganancia semanal
+        salarioTotal=0,     // el resultado total
         valorDado=0; // el valor final para decidir true o false
 
     // Ingresar los datos de ventas y salario fijo
