@@ -1,23 +1,21 @@
 #include <iostream>
 #include <cmath>
+#include <cstdlib> // para system
 
-#ifdef __linux__
-    namespace unistd{
-        #include <unistd.h>
-    }
-    #define PAUSE unistd::pause()
+// para que funcione el system pause en Linux y windows
+#if defined(__linux__) && !defined(__MINGW32__)
+    #define PAUSE "foo=0; read foo"
 #elif defined(__MINGW32__) || defined(_WIN32)
-    #include <cstdlib> // para system (solo en windows)
-    #define PAUSE std::system("pause > null")
+    #define PAUSE "pause > null"
 #endif
 
 void pause(){
     std::cout << "\nPulse una tecla para salir...";
-    PAUSE;
+    std::system(PAUSE);
+    std::cout << "\n";
 }
 
-template<typename T>
-void input(std::string str, T& var){
+void input(std::string str, float& var){
     std::cout << str;
     std::cin >> var;
 }
@@ -45,6 +43,7 @@ int main(){
     <<  M_PI << "*" << longitud << "=" << mul_long << "\n"
     << mul_long << "*" << rest_rad << "=" << result << "\n";
 
+    pause();
     return 0;
 }
 
