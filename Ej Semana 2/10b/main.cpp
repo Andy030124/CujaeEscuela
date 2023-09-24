@@ -1,3 +1,6 @@
+// ANDY GARCIA FONTICOBA
+// GRUPO 11, CUJAE
+
 /*
 Dadas las longitudes de los 3 lados de un triangulo
 Calcular si es triangulo rectangulo

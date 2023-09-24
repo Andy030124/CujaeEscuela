@@ -1,3 +1,6 @@
+// ANDY GARCIA FONTICOBA
+// GRUPO 11, CUJAE
+
 /*
 Elabore un programa que permita evaluar f(x)
 1               si x=0;

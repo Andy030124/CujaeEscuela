@@ -1,3 +1,6 @@
+// ANDY GARCIA FONTICOBA
+// GRUPO 11, CUJAE
+
 /*
 Dadas las coordenadas de un punto, 
 diga el cuadrante en el que se encuentra

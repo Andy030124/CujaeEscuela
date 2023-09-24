@@ -1,3 +1,14 @@
+// ANDY GARCIA FONTICOBA
+// GRUPO 11, CUJAE
+/*
+Ejercicio 3:
+    La secretaria de la filial dispone de las notas (2,3,4,5) de un grupo
+de n estudiantes en una asignatura. Elabore una aplicacion de consola que 
+permita determinar cuantos estudiantes obtuvieron notas de 4 o 5, cuantos
+obtuvieron notas de 3, y cuantos desaprovaron, asi como determinar que 
+por ciento representa los que obtuvieron 4 o 5 con respecto al total de
+estudiantes.
+*/
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -13,7 +24,7 @@
 #endif
 
 void pause(){
-    std::cout << "\nPulse una tecla para salir...";
+    std::cout << "\nPulse una tecla para continuar..." << std::endl;
     std::system(PAUSE);
     std::cout << "\n";
 }
@@ -78,19 +89,47 @@ int main(){
         / totalEstudiantes
     ) * 100;
 
-    std::cout 
-    << "Cantidad de estudiantes con las notas de 4 y 5: " 
-    << mejoresAlumnos << "\n"
-    << "Cantidad de estudiantes con la nota de 3: "
-    << BaseDatos[ "3" ] << "\n"
-    << "Desaprobaron: " << BaseDatos[ "2" ] << "\n"
-    // para poder imprimir el % se necesita un \%
-    << "El " << Porcentaje << "\% obtuvieron buenas notas\n";
+    int opcion{0};
+    do{
+        std::cout
+        << "==========================================================\n"
+        << "===========================MENÚ===========================\n"
+        << "==========================================================\n"
+        << "1. Mejores Alumnos (notas de 4 y 5)\n"
+        << "2. Estudiantes con la nota 3\n"
+        << "3. Desaprobados (nota 2)\n"
+        << "4. Porcentaje de buenos alumnos (porcentaje de alumnos con 4 y 5)\n"
+        << "Cualquier otra opción para salir: ";
+        std::cin >> opcion;
+
+        std::cout << "\n\b";
+        switch(opcion){
+            case 1:
+                std::cout 
+                << "Cantidad de estudiantes con las notas de 4 y 5: " 
+                << mejoresAlumnos << "\n";
+                break;
+            case 2:
+                std::cout 
+                << "Cantidad de estudiantes con la nota de 3: "
+                << BaseDatos[ "3" ] << "\n";
+                break;
+            case 3:
+                std::cout 
+                << "Cantidada de estudiantes que desaprobaron: " 
+                << BaseDatos[ "2" ] << "\n";
+                break;
+            case 4:
+                std::cout 
+                // para poder imprimir el % se necesita un \%
+                << "El " << Porcentaje << "\% obtuvieron buenas notas\n";
+                break;
+            default: opcion = 0; break; // para facilitar el condicional
+        }
+    }while(opcion != 0);
 
     pause();
     return 0;
 }
-
-
 
 

@@ -1,3 +1,6 @@
+// ANDY GARCIA FONTICOBA
+// GRUPO 11, CUJAE
+
 /*
 Interpretar el codigo:
 Es un programa simple que obtiene una de 3 opciones
